@@ -1,0 +1,17 @@
+services:
+  toolbox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: local-toolbox
+    ports:
+      - "18011:18011"
+    volumes:
+      - ./app.py:/app/app.py
+      - ./tools:/app/tools
+      - ./.streamlit:/app/.streamlit
+      - u2net-cache:/root/.u2net
+    restart: unless-stopped
+
+volumes:
+  u2net-cache:
